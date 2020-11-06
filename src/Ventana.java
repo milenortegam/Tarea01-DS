@@ -1,7 +1,10 @@
 import java.awt.*;
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Ventana extends JFrame {
+
+public class Ventana extends JFrame implements ActionListener{
 
 	private JFrame marco = new JFrame();
 	private JPanel panel = new JPanel();
@@ -13,7 +16,6 @@ public class Ventana extends JFrame {
     
     public Ventana() {
 		this.setSize(1000, 600);
-		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setTitle("Tarea 1");
 		initComponentes();
@@ -38,15 +40,18 @@ public class Ventana extends JFrame {
 		btnVerde.setForeground(Color.black);
 		btnVerde.setBounds(200, 200, 100, 100);
 		btnVerde.setBackground(Color.green);
+		btnVerde.addActionListener(this);
+		
 
 		btnAzul.setForeground(Color.white);
 		btnAzul.setBounds(300, 200, 100, 100);
 		btnAzul.setBackground(Color.blue);
-
+		btnAzul.addActionListener(this);
+		
 		btnAmarillo.setForeground(Color.black);
 		btnAmarillo.setBounds(400, 200, 100, 100);
 		btnAmarillo.setBackground(Color.yellow);
-		
+		btnAmarillo.addActionListener(this);
 		
 		
 		panel.add(btnVerde);
@@ -54,5 +59,18 @@ public class Ventana extends JFrame {
 		panel.add(btnAmarillo);
 		
 		
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		
+		if(e.getSource()==btnVerde) {
+			panel.setBackground(Color.GREEN);
+		}
+		if(e.getSource()==btnAzul) {
+			panel.setBackground(Color.blue);
+		}
+		if(e.getSource()==btnAmarillo) {
+			panel.setBackground(Color.yellow);
+		}
 	}
 }
