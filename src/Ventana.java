@@ -8,7 +8,7 @@ public class Ventana extends JFrame implements ActionListener{
 
 	private JFrame marco = new JFrame();
 	private JPanel panel = new JPanel();
-	private JButton btnVerde = new JButton ("Verde");
+	private JButton btnRojo = new JButton ("Rojo");
 	private JButton btnAzul = new JButton ("Azul");
 	private JButton btnAmarillo = new JButton ("Amarillo");
     private Color colorActual;
@@ -38,10 +38,10 @@ public class Ventana extends JFrame implements ActionListener{
 	
 	
 	public void setBotones() {
-		btnVerde.setForeground(Color.black);
-		btnVerde.setBounds(200, 200, 100, 100);
-		btnVerde.setBackground(Color.green);
-		btnVerde.addActionListener(this);
+		btnRojo.setForeground(Color.black);
+		btnRojo.setBounds(200, 200, 100, 100);
+		btnRojo.setBackground(Color.red);
+		btnRojo.addActionListener(this);
 		
 
 		btnAzul.setForeground(Color.white);
@@ -55,7 +55,7 @@ public class Ventana extends JFrame implements ActionListener{
 		btnAmarillo.addActionListener(this);
 		
 		
-		panel.add(btnVerde);
+		panel.add(btnRojo);
 		panel.add(btnAzul);
 		panel.add(btnAmarillo);
 		
@@ -70,9 +70,9 @@ public class Ventana extends JFrame implements ActionListener{
 	}
 	public void actionPerformed(ActionEvent e) {
 		
-		if(e.getSource()==btnVerde) {
-			colorActual=Color.green;
-			colorNombre="Verde";
+		if(e.getSource()==btnRojo) {
+			colorActual=Color.red;
+			colorNombre="Rojo";
 			cambio();
 		}
 		if(e.getSource()==btnAzul) {
