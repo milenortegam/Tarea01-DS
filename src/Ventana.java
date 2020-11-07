@@ -11,7 +11,8 @@ public class Ventana extends JFrame implements ActionListener{
 	private JButton btnVerde = new JButton ("Verde");
 	private JButton btnAzul = new JButton ("Azul");
 	private JButton btnAmarillo = new JButton ("Amarillo");
-    
+    private Color colorActual;
+    private String colorNombre;
     
     
     public Ventana() {
@@ -60,17 +61,48 @@ public class Ventana extends JFrame implements ActionListener{
 		
 		
 	}
-	
+	public void cambio() {
+		
+		panel.setBackground(colorActual);
+		
+		
+		
+	}
 	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getSource()==btnVerde) {
-			panel.setBackground(Color.GREEN);
+			colorActual=Color.green;
+			colorNombre="Verde";
+			cambio();
 		}
 		if(e.getSource()==btnAzul) {
-			panel.setBackground(Color.blue);
+			colorActual=Color.blue;
+			colorNombre="Azul";
+			cambio();
 		}
 		if(e.getSource()==btnAmarillo) {
-			panel.setBackground(Color.yellow);
+			colorActual=Color.yellow;
+			colorNombre="Amarillo";
+			cambio();
 		}
+	}
+	
+	public Color getColorActual() {
+		return colorActual;
+	}
+
+
+	public void setColorActual(Color colorActual) {
+		this.colorActual = colorActual;
+	}
+
+
+	public String getColorNombre() {
+		return colorNombre;
+	}
+
+
+	public void setColorNombre(String colorNombre) {
+		this.colorNombre = colorNombre;
 	}
 }
