@@ -11,6 +11,7 @@ public class Ventana extends JFrame implements ActionListener{
 	private JButton btnRojo = new JButton ("Rojo");
 	private JButton btnAzul = new JButton ("Azul");
 	private JButton btnAmarillo = new JButton ("Amarillo");
+	private JButton btnMezcla = new JButton ("Crear Mezcla");
     private Color colorActual;
     private String colorNombre;
     private String arrayColores[]=new String[3];
@@ -58,6 +59,11 @@ public class Ventana extends JFrame implements ActionListener{
 		btnAmarillo.addActionListener(this);
 		
 		
+		btnMezcla.setBounds(600, 200, 200, 100);
+		btnMezcla.setForeground(Color.black);
+		btnMezcla.setBackground(Color.white);
+		btnMezcla.addActionListener(this);
+		
 		panel.add(btnRojo);
 		panel.add(btnAzul);
 		panel.add(btnAmarillo);
@@ -69,29 +75,13 @@ public class Ventana extends JFrame implements ActionListener{
 		panel.setBackground(colorActual);
 		if(clics==2) {
 			
-			if(arrayColores[0]=="Rojo"&&arrayColores[1]=="Azul"||arrayColores[1]=="Rojo"&&arrayColores[0]=="Azul") {
-				colorMezcla="Morado";
-				
-			}
-			if(arrayColores[0]=="Rojo"&&arrayColores[1]=="Amarillo"||arrayColores[1]=="Rojo"&&arrayColores[0]=="Amarillo") {
-				colorMezcla="Naranja";
-				
-			}
-			if(arrayColores[0]=="Azul"&&arrayColores[1]=="Amarillo"||arrayColores[1]=="Azul"&&arrayColores[0]=="Amarillo") {
-				colorMezcla="Verde";
-				
-			}
-			
-			clics=0;
-			actualizacion();
-			
-			
+			panel.add(btnMezcla);
 			
 		}
 		
 	}
 	public void actualizacion() {
-		System.out.printf("");
+		System.out.println("");
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -116,6 +106,27 @@ public class Ventana extends JFrame implements ActionListener{
 			colorNombre="Amarillo";
 			arrayColores[clics-1]=colorNombre;
 			cambio();
+		}
+		if(e.getSource()==btnMezcla) {
+			
+			if(arrayColores[0]=="Rojo"&&arrayColores[1]=="Azul"||arrayColores[1]=="Rojo"&&arrayColores[0]=="Azul") {
+				colorMezcla="Morado";
+				btnMezcla.setBackground(new Color(128,0,128));
+				
+			}
+			if(arrayColores[0]=="Rojo"&&arrayColores[1]=="Amarillo"||arrayColores[1]=="Rojo"&&arrayColores[0]=="Amarillo") {
+				colorMezcla="Naranja";
+				btnMezcla.setBackground(Color.orange);
+			}
+			if(arrayColores[0]=="Azul"&&arrayColores[1]=="Amarillo"||arrayColores[1]=="Azul"&&arrayColores[0]=="Amarillo") {
+				colorMezcla="Verde";
+				btnMezcla.setBackground(Color.green);
+				
+			}
+			
+			
+			actualizacion();
+			clics=0;
 		}
 	}
 	

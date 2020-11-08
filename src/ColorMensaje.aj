@@ -11,6 +11,7 @@ public aspect ColorMensaje {
 	&& target(v2)	;
 	 
 	after(Ventana v2) : mostrarMezcla(v2)  {
+	        
 			System.out.println("\nEl color de la mezcla es: "+ v2.getColorMezcla());
 	}
 }
