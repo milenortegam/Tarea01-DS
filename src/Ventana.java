@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 public class Ventana extends JFrame implements ActionListener{
 
-	private JFrame marco = new JFrame();
+	
 	private JPanel panel = new JPanel();
 	private JButton btnRojo = new JButton ("Rojo");
 	private JButton btnAzul = new JButton ("Azul");
@@ -17,6 +17,8 @@ public class Ventana extends JFrame implements ActionListener{
     private String arrayColores[]=new String[3];
     private int clics;
     private String colorMezcla;
+    private JLabel mensaje= new JLabel();
+    private JFrame frame = new JFrame();
     
     
     public Ventana() {
@@ -35,7 +37,15 @@ public class Ventana extends JFrame implements ActionListener{
 		panel.setLayout(null);
 		this.getContentPane().add(panel);
 		panel.setBackground(Color.WHITE);
+		mensaje.setText("Escoja 2 colores y después de eso podrá escoger la opción de generar Mezcla");
 		
+		mensaje.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        mensaje.setHorizontalTextPosition(JLabel.RIGHT);
+        frame.add(mensaje);
+        frame.pack();
+        frame.setVisible(true);
+		
+		panel.add(mensaje);
 	}
 	
 	 
@@ -73,11 +83,15 @@ public class Ventana extends JFrame implements ActionListener{
 	public void cambio() {
 		
 		panel.setBackground(colorActual);
-		if(clics==2) {
+		if(clics>2) {
+			clics=0;
+		}
+		else if(clics==2) {
 			
 			panel.add(btnMezcla);
 			
 		}
+		
 		
 	}
 	public void actualizacion() {
@@ -85,48 +99,55 @@ public class Ventana extends JFrame implements ActionListener{
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		
-		if(e.getSource()==btnRojo) {
-			clics++;
-			colorActual=Color.red;
-			colorNombre="Rojo";
-			arrayColores[clics-1]=colorNombre;
-			cambio();
-		}
-		if(e.getSource()==btnAzul) {
-			clics++;
-			colorActual=Color.blue;
-			colorNombre="Azul";
-			arrayColores[clics-1]=colorNombre;
-			cambio();
-		}
-		if(e.getSource()==btnAmarillo) {
-			clics++;
-			colorActual=Color.yellow;
-			colorNombre="Amarillo";
-			arrayColores[clics-1]=colorNombre;
-			cambio();
+		if(clics>-1&&clics<3) {
+			if(e.getSource()==btnRojo) {
+				clics++;
+				colorActual=Color.red;
+				colorNombre="Rojo";
+				arrayColores[clics-1]=colorNombre;
+				cambio();
+			}
+			if(e.getSource()==btnAzul) {
+				clics++;
+				colorActual=Color.blue;
+				colorNombre="Azul";
+				arrayColores[clics-1]=colorNombre;
+				cambio();
+			}
+			if(e.getSource()==btnAmarillo) {
+				clics++;
+				colorActual=Color.yellow;
+				colorNombre="Amarillo";
+				arrayColores[clics-1]=colorNombre;
+				cambio();
+			}
 		}
 		if(e.getSource()==btnMezcla) {
-			
-			if(arrayColores[0]=="Rojo"&&arrayColores[1]=="Azul"||arrayColores[1]=="Rojo"&&arrayColores[0]=="Azul") {
-				colorMezcla="Morado";
-				btnMezcla.setBackground(new Color(128,0,128));
+			if(clics==2) {
+				if(arrayColores[0]=="Rojo"&&arrayColores[1]=="Azul"||arrayColores[1]=="Rojo"&&arrayColores[0]=="Azul") {
+					colorMezcla="Morado";
+					btnMezcla.setBackground(new Color(128,0,128));
+					actualizacion();
+					clics=0;
+				}
+				if(arrayColores[0]=="Rojo"&&arrayColores[1]=="Amarillo"||arrayColores[1]=="Rojo"&&arrayColores[0]=="Amarillo") {
+					colorMezcla="Naranja";
+					btnMezcla.setBackground(Color.orange);
+					actualizacion();
+					clics=0;
+				}
+				if(arrayColores[0]=="Azul"&&arrayColores[1]=="Amarillo"||arrayColores[1]=="Azul"&&arrayColores[0]=="Amarillo") {
+					colorMezcla="Verde";
+					btnMezcla.setBackground(Color.green);
+					actualizacion();
+					clics=0;
+					
+				}
 				
 			}
-			if(arrayColores[0]=="Rojo"&&arrayColores[1]=="Amarillo"||arrayColores[1]=="Rojo"&&arrayColores[0]=="Amarillo") {
-				colorMezcla="Naranja";
-				btnMezcla.setBackground(Color.orange);
-			}
-			if(arrayColores[0]=="Azul"&&arrayColores[1]=="Amarillo"||arrayColores[1]=="Azul"&&arrayColores[0]=="Amarillo") {
-				colorMezcla="Verde";
-				btnMezcla.setBackground(Color.green);
-				
-			}
 			
 			
-			actualizacion();
-			clics=0;
+			
 		}
 	}
 	
